@@ -17,6 +17,8 @@ namespace Calculator.UI
             _window = window;
             window.EquationChanged += WindowEquationChanged;
             window.SubmitButtonPressed += WindowSubmitButtonPressed;
+            _window.UpdateEquation(_data.Equation);
+            _window.UpdateHistory(_data.History);
         }
 
         private void ModelHistoryChanged(object sender, string history)
@@ -31,10 +33,15 @@ namespace Calculator.UI
 
         private void WindowSubmitButtonPressed(object sender, EventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(_data.Equation))
+            {
+                return;
+            }
+            
             var solution = EquationParser.Solve(_data.Equation);
             _data.AppendHistory($"{_data.Equation}={solution}");
             _data.Equation = string.Empty;
-            _window.ClearInput();
+            _window.UpdateEquation(string.Empty);
         }
     }
 }

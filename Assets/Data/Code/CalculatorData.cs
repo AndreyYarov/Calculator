@@ -19,7 +19,7 @@ namespace Calculator.Data
 
         public void AppendHistory(string line)
         {
-            _history.Append(line);
+            _history.AppendLine(line);
             HistoryChanged?.Invoke(this, History);
         }
 
