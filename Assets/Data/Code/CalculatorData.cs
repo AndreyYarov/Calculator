@@ -11,7 +11,7 @@ namespace Calculator.Data
         private readonly StringBuilder _history;
         private string _equation;
 
-        public CalculatorData(string equation, string history)
+        internal CalculatorData(string equation, string history)
         {
             _equation = equation;
             _history = new StringBuilder(history);
